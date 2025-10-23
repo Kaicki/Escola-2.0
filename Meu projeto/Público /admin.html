@@ -1,0 +1,34 @@
+<h1>Admin Notícias / Projetos</h1>
+<input id="tituloNoticia" placeholder="Título Notícia">
+<textarea id="conteudoNoticia" placeholder="Conteúdo"></textarea>
+<button onclick="adicionarNoticia()">Salvar Notícia</button>
+
+<input id="tituloProjeto" placeholder="Título Projeto">
+<textarea id="descricaoProjeto" placeholder="Descrição"></textarea>
+<button onclick="adicionarProjeto()">Salvar Projeto</button>
+
+<script>
+const API_URL = "/api";
+
+async function adicionarNoticia() {
+  const titulo = document.getElementById("tituloNoticia").value;
+  const conteudo = document.getElementById("conteudoNoticia").value;
+  await fetch(`${API_URL}/noticias`, {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({titulo, conteudo})
+  });
+  alert("Notícia salva!");
+}
+
+async function adicionarProjeto() {
+  const titulo = document.getElementById("tituloProjeto").value;
+  const descricao = document.getElementById("descricaoProjeto").value;
+  await fetch(`${API_URL}/projetos`, {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({titulo, descricao})
+  });
+  alert("Projeto salvo!");
+}
+</script>
